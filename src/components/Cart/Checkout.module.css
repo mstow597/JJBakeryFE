@@ -1,0 +1,391 @@
+.checkout {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding: 2.4rem 3.6rem 2.4rem 3.6rem;
+  font-size: 1.6rem;
+  gap: 2.4rem;
+}
+
+.checkout-heading {
+  font-size: 3.6rem;
+  text-align: center;
+}
+
+.cart-items-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 1.6rem;
+  max-height: 20rem;
+  overflow-y: scroll;
+  overflow-x: visible;
+  scrollbar-width: thin;
+  padding-right: 1rem;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart-img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100;
+  border: 2px solid #cf5d28;
+}
+
+.cart-item-quantity {
+  width: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: space-between;
+}
+
+.cart-item-price {
+  font-size: 1rem;
+  font-weight: lighter;
+}
+
+.cart-item-subtotal {
+  margin-left: auto;
+}
+
+.cart-cost-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-right: 1.3rem;
+  min-width: 30%;
+  margin-left: auto;
+  font-weight: bold;
+}
+
+.cart-subtotal,
+.cart-taxes,
+.cart-total {
+  margin-left: auto;
+  padding-right: 1.3rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.cart-subtotal-text,
+.cart-taxes-text,
+.cart-total-text {
+  margin-left: auto;
+}
+
+.cart-subtotal-value,
+.cart-taxes-value,
+.cart-total-value {
+  margin-left: auto;
+}
+
+.checkout-footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment,
+.checkout-type,
+.billing-card,
+.billing-in-store {
+  border-top: 2px solid #cf5d28;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  padding-left: 0.6rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.2rem;
+  position: relative;
+}
+
+.checkout-type,
+.payment {
+  animation: showTab 500ms forwards;
+}
+
+.billing-card {
+  animation: showFormCard 500ms forwards;
+}
+
+.billing-in-store {
+  animation: showFormInStore 500ms forwards;
+}
+
+.checkout-type-heading,
+.payment-heading,
+.billing-heading {
+  top: 1.6rem;
+  position: absolute;
+  width: 100%;
+}
+
+.checkout-type-heading:hover,
+.payment-heading:hover,
+.billing-heading:hover {
+  cursor: pointer;
+}
+
+.billing-form-input {
+  position: relative;
+}
+
+.billing-form-input:focus {
+  box-shadow: 0 0px 4px 2px #cf5d2870;
+}
+
+.billing-form-input-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.billing-form-label-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.payment-options,
+.checkout-type-options {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  animation: showContent 500ms forwards;
+}
+
+.payment-option,
+.checkout-type-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.payment-option-btn,
+.checkout-type-btn {
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 1px solid #cf5d28;
+  background-color: #f5dfd4;
+  border-radius: 100;
+}
+
+.payment-option-btn:hover,
+.checkout-type-btn:hover {
+  cursor: pointer;
+}
+
+.btn-selected {
+  background-color: #cf5d28;
+}
+
+.billing-form {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  position: absolute;
+  width: 99%;
+}
+
+.billing-form-in-store {
+  animation: showBillingInStoreContent 500ms forwards;
+}
+
+.billing-form-card {
+  animation: showFormContent 700ms forwards;
+}
+
+.billing-form-label {
+  font-size: 1.6rem;
+}
+
+.billing-form-input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 2rem;
+  background-color: #f5dfd4;
+  caret-color: #cf5d28a8;
+  border: 1px solid #cf5d28;
+  outline: none;
+}
+
+.checkout-submit-btn {
+  margin-top: 3.5rem;
+  animation: slidein 500ms ease-in;
+}
+
+.hide-tab {
+  animation: hideTab 500ms forwards;
+}
+
+.hide-form-card {
+  animation: hideFormCard 500ms forwards;
+}
+
+.hide-form-in-store {
+  animation: hideFormInStore 500ms forwards;
+}
+
+.hide-content {
+  animation: hideContent 200ms forwards;
+}
+
+.hide-form-content {
+  animation: hideFormContent 200ms forwards;
+}
+
+.hide-in-store-content {
+  animation: hideBillingInStoreContent 200ms forwards;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes slidein {
+  0% {
+    opacity: 20%;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hideTab {
+  0% {
+    height: 10rem;
+  }
+
+  100% {
+    height: 5rem;
+  }
+}
+
+@keyframes showTab {
+  0% {
+    height: 5rem;
+  }
+
+  100% {
+    height: 10rem;
+  }
+}
+
+@keyframes showFormCard {
+  0% {
+    height: 5rem;
+  }
+  100% {
+    height: 20rem;
+  }
+}
+
+@keyframes showFormInStore {
+  0% {
+    height: 5rem;
+  }
+  100% {
+    height: 11rem;
+  }
+}
+
+@keyframes hideFormCard {
+  0% {
+    height: 20rem;
+  }
+  100% {
+    height: 5rem;
+  }
+}
+
+@keyframes hideFormInStore {
+  0% {
+    height: 11rem;
+  }
+  100% {
+    height: 5rem;
+  }
+}
+
+@keyframes showContent {
+  0%,
+  35% {
+    top: 40%;
+    opacity: 0;
+  }
+  100% {
+    top: 47%;
+    opacity: 100%;
+  }
+}
+
+@keyframes hideContent {
+  0% {
+    top: 47%;
+    opacity: 100%;
+  }
+  100% {
+    top: 40%;
+    opacity: 0;
+  }
+}
+
+@keyframes showFormContent {
+  0%,
+  35% {
+    top: 20%;
+    opacity: 0;
+  }
+  100% {
+    top: 26%;
+    opacity: 100%;
+  }
+}
+
+@keyframes hideFormContent {
+  0% {
+    top: 26%;
+    opacity: 100%;
+  }
+  100% {
+    top: 20%;
+    opacity: 0;
+  }
+}
+
+@keyframes showBillingInStoreContent {
+  0% {
+    top: 20%;
+    opacity: 0;
+  }
+
+  100% {
+    top: 42%;
+    opacity: 100%;
+  }
+}
+
+@keyframes hideBillingInStoreContent {
+  0% {
+    top: 42%;
+    opacity: 100%;
+  }
+
+  100% {
+    top: 20%;
+    opacity: 0;
+  }
+}

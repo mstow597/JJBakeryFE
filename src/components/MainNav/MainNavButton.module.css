@@ -1,0 +1,21 @@
+.btn--main-nav {
+  display: block;
+  background-color: #f5dfd4;
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: color 0.5s ease-in-out;
+}
+
+.btn--main-nav:hover {
+  color: #cf5d28;
+}
+
+@media (width < 1250) {
+  .btn--main-nav {
+    font-size: 1rem;
+  }
+}

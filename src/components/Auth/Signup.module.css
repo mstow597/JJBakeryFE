@@ -1,0 +1,63 @@
+.forgot-password-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.forgot-password {
+  border: none;
+  background-color: #f5dfd4;
+  cursor: pointer;
+  text-decoration: none;
+  color: #cf5d28;
+  font-size: 1.2rem;
+}
+
+.create-account {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.detail-modal {
+  position: absolute;
+  left: 125%;
+  top: 0;
+  background-color: #f5dfd4;
+  border: 2px solid #cf5d28;
+  min-width: 25rem;
+  min-height: 5rem;
+  border-radius: 0.8rem;
+  transition: all 0.3s ease-in-out;
+  animation: slide-down 300ms ease-out forwards;
+}
+
+.detail-modal-container {
+  padding: 1.2rem 3.6rem 1.2rem 1.2rem;
+  display: flex;
+  align-items: end;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.detail-modal-heading {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.detail-modal-row {
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  display: flex;
+  position: relative;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

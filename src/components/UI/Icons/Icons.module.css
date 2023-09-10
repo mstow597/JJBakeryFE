@@ -1,0 +1,72 @@
+.icon {
+  stroke-width: 1.5;
+  fill: none;
+  width: 2.6rem;
+  height: 2.6rem;
+  stroke: #333;
+}
+
+.icon-fail {
+  position: absolute;
+  stroke-width: 1.5;
+  fill: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  right: -28;
+  stroke: #333;
+}
+
+.icon-success {
+  position: absolute;
+  stroke-width: 1.5;
+  fill: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  right: -28;
+  stroke: #cf5d28;
+}
+
+.order {
+  stroke: #cf5d28;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.cart {
+  stroke: #cf5d28;
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.cart-face {
+  stroke: #cf5d28;
+  width: 20rem;
+  height: 20rem;
+}
+
+.icon-search-form {
+  width: 2rem;
+  height: 2rem;
+  stroke: #cf5d28;
+}
+
+.icon-chevron {
+  width: 2.4rem;
+  height: 2.4rem;
+  stroke: #cf5d28;
+}
+
+.contact {
+  width: 4.8rem;
+  height: 4.8rem;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.close:hover {
+  cursor: pointer;
+}

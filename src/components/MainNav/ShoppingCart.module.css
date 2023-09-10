@@ -1,0 +1,48 @@
+.shopping-cart {
+  padding-top: 0.2rem;
+  background-color: #eedad1;
+  color: #f5dfd4;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.5s ease-in-out;
+}
+
+.shopping-cart-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  fill: #f5dfd4;
+  stroke: #cf5d28;
+  z-index: 1;
+}
+
+.shopping-cart-wrapper {
+  position: relative;
+}
+
+.shopping-cart-quantity {
+  position: absolute;
+  top: 0;
+  right: -3;
+  width: 1rem;
+  height: 1rem;
+  background-color: #cf5d28;
+  border-radius: 100;
+  animation: slidein 200ms ease-in forwards;
+}
+
+@keyframes slidein {
+  0% {
+    transform: translateX(5);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (width < 1250) {
+  .shopping-cart-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}

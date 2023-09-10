@@ -1,0 +1,31 @@
+.auth--form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2.4rem 3.6rem 2.4rem 3.6rem;
+  position: relative;
+}
+
+.auth--form-heading {
+  font-size: 3.6rem;
+  text-align: center;
+  margin-bottom: 3.6rem;
+}
+
+.auth--form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.auth--form-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.auth--form-input {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  position: relative;
+}

@@ -1,0 +1,100 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  position: fixed;
+  top: 5vh;
+  left: 5%;
+  width: 90%;
+  background-color: #eedad1;
+  border: 2px solid #cf5d28;
+  padding: 1rem;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 100000;
+  animation: slide-down 300ms ease-out forwards;
+  overflow-y: scroll;
+}
+
+.modal-order-item {
+  padding: 0;
+  border: none;
+}
+
+.closing {
+  animation: slide-up 300ms east-out forwards;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    width: 40rem;
+    left: calc(50% - 20rem);
+  }
+  .modal-order-item {
+    width: 80rem;
+    height: 80rem;
+    left: calc(50% - 40rem);
+  }
+  .modal-shopping-cart {
+    width: 60rem;
+    left: calc(50% - 30rem);
+  }
+  .modal-checkout,
+  .modal-receipt,
+  .order-exceeded,
+  .contact-success {
+    width: 60rem;
+    left: calc(50% - 30rem);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+}
+@media (height < 850) {
+  .modal-order-item {
+    top: 2vh;
+  }
+}
+@media (height < 800) {
+  .modal-order-item {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (width < 500) {
+  .modal {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

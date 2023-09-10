@@ -1,0 +1,42 @@
+.button {
+  background-color: #cf5d28;
+  border: 1px solid #cf5d28;
+  padding: 1rem 3rem;
+  border-radius: 100;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #eedad1;
+  cursor: pointer;
+  transition:
+    background-color 0.5s ease-in-out,
+    border-color 0.5s ease-in-out;
+}
+
+.button-flex-center {
+  align-self: center;
+  padding: 1rem 6rem;
+}
+
+.button-max-width {
+  width: 100%;
+}
+
+.submitting {
+  width: 100%;
+  background-color: #dba389;
+  border: 1px solid #f5dfd4;
+  padding: 1rem 2rem;
+  border-radius: 100;
+  font-size: 1.8rem;
+  color: #f5dfd4;
+  transition: all 0.2s ease-in-out;
+  cursor: default;
+}
+
+@media (width < 1250) {
+  .button {
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+  }
+}

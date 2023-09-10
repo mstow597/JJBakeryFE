@@ -1,0 +1,64 @@
+/* Notes on .main-nav:
+Throughout the application, the main-nav height will be used to   */
+
+.main-nav {
+  min-height: 11rem;
+  position: sticky;
+  /* background-color: #f5dfd4; */
+  background-color: #eedad1;
+  padding: 2.4rem 4.8rem;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 4.8rem;
+  font-size: 2.4rem;
+  font-weight: 700;
+  box-shadow: 0 6px 8px -8px rgba(0, 0, 0, 0.15);
+}
+
+.main-nav-logo {
+  width: 12.4rem;
+  cursor: pointer;
+}
+
+.main-nav img:first-child {
+  margin-right: auto;
+}
+
+.btn-nav {
+  display: block;
+  background-color: #f5dfd4;
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: color 0.5s ease-in-out;
+}
+
+.btn-nav:hover {
+  color: #cf5d28;
+}
+
+@media (width < 1250) {
+  .main-nav-logo {
+    width: 4.2rem;
+  }
+  .main-nav img:first-child {
+    margin-right: 0;
+  }
+  .main-nav {
+    height: 27dvh;
+    font-size: 1rem;
+    gap: 1.4rem;
+    justify-content: space-around;
+    padding: 1.4rem 1.4rem;
+    flex-direction: column;
+  }
+  .btn-nav {
+    font-size: 1rem;
+  }
+}

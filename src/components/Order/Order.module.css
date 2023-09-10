@@ -1,0 +1,20 @@
+.order {
+  height: 100%;
+  background-color: #eedad1;
+  padding: 8rem 16rem;
+  display: flex;
+  flex-direction: column;
+  gap: 7rem;
+}
+
+@media (max-width: 1200px) {
+  .order {
+    padding: 4rem 8rem;
+  }
+}
+
+@media (width < 500) {
+  .order {
+    padding: 2rem 4rem;
+  }
+}
