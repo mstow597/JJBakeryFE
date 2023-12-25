@@ -58,7 +58,7 @@ export const PasswordInput = (props) => {
       className={styles.input}
       type="password"
       name="password"
-      placeholder="Password"
+      placeholder={props.placeholder || "Password"}
       value={props.value}
       onChange={props.onChange}
       onFocus={props.onFocus ? props.onFocus : undefined}
@@ -82,8 +82,7 @@ export const PasswordConfirmInput = (props) => {
 
 export const SubmitInput = (props) => {
   const { isSubmitting, allInputsValid, modifiedClass } = props;
-  let className =
-    !isSubmitting && allInputsValid ? styles.button : styles.submitting;
+  let className = !isSubmitting && allInputsValid ? styles.button : styles.submitting;
 
   if (modifiedClass) {
     className += ` ${styles[modifiedClass]}`;
@@ -103,10 +102,7 @@ export const SubmitInput = (props) => {
 
 export const CancelInput = (props) => {
   return (
-    <button
-      className={`${styles.button} ${styles["button-close"]}`}
-      onClick={props.onClick}
-    >
+    <button className={`${styles.button} ${styles["button-close"]}`} onClick={props.onClick}>
       Cancel
     </button>
   );

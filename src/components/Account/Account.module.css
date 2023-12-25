@@ -41,41 +41,57 @@
 }
 
 .account {
-  padding: 8rem 16rem;
-  height: calc(100vh - 17rem);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12rem;
+  background-color: #eedad1;
 }
 
 .container {
-  position: relative;
-  padding: 6rem 0;
+  /* height: 100%; */
+  min-height: 80vh;
+  padding: 6rem 0 6rem 0;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
   gap: 1rem;
-  min-height: 100%;
-  box-shadow: 0 0 15 rgba(206, 92, 39, 0.5);
   border-radius: 1rem;
+  background-color: #eedad1;
 }
 
 .heading {
-  position: absolute;
   font-size: 3.6rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 30rem;
-  top: 10%;
-  left: calc(50% - 15rem);
-  animation: slidein 300ms 50ms backwards;
+  animation: slidein 200ms backwards;
+}
+
+.details,
+.name,
+.phone,
+.password,
+.history {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.2rem 0 1.2rem 0;
+}
+
+.history {
+  min-height: 80dvh;
+
+  height: 100%;
 }
 
 .details {
-  display: flex;
-  flex-direction: column;
-  gap: 10rem;
   width: 65%;
-  margin: 0 auto;
+  gap: 8rem;
 }
 
 .details-list {
@@ -85,7 +101,7 @@
   text-align: center;
   font-size: 3.6rem;
   width: 100%;
-  animation: slidein 300ms 100ms backwards;
+  animation: slidein 200ms backwards;
   list-style: none;
 }
 
@@ -125,15 +141,63 @@
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  width: 20%;
+  width: 25%;
   margin: 0 auto;
-  animation: slidein 300ms 100ms backwards;
+  animation: slidein 200ms backwards;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  list-style: none;
+  margin: 0 auto;
+  animation: slidein 200ms backwards;
+  padding: 1.2rem;
+}
+
+.history-list-item,
+.history-headings-container {
+  font-size: 1.6rem;
+  display: flex;
+  width: 100rem;
+}
+
+.history-list-item {
+  padding: 1.2rem;
+  border-radius: 10;
+  transition: all 200ms;
+}
+
+.history-list-item:hover {
+  box-shadow: 0 0 15 rgba(206, 92, 39, 0.5);
+  cursor: pointer;
+}
+
+.history-list-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.history-list-heading {
+  font-size: 2rem;
+}
+
+.history-list-item-purchase-date,
+.history-list-item-purchase-id,
+.history-list-item-purchase-status,
+.history-list-item-purchase-price,
+.history-list-heading {
+  width: 25%;
+  display: flex;
+  justify-content: center;
 }
 
 @keyframes slidein {
   0% {
     opacity: 0.5;
-    transform: translateY(-20);
+    transform: translateY(-10);
   }
   100% {
     opacity: 1;
@@ -184,5 +248,14 @@
   }
   .order-nav-search {
     grid-column: span 2;
+  }
+}
+
+@media (height < 750) {
+  .container {
+    min-height: 80dvh;
+  }
+  .account {
+    height: 100%;
   }
 }

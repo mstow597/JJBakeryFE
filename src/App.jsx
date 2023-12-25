@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MainNav from "./components/MainNav/MainNav";
 import Hero from "./components/Hero/Hero";
 import Cart from "./components/Cart/Cart";
@@ -17,8 +17,11 @@ import Contact from "./components/Contact/Contact";
 import ContactSuccess from "./components/Contact/ContactSuccess";
 import SignupSuccess from "./components/Auth/SignupSuccess";
 import Account from "./components/Account/Account";
+import { useEffect } from "react";
+import { uiActions } from "./store/ui";
 
 export default () => {
+  const dispatch = useDispatch();
   const {
     showLoginModal,
     showSignupModal,
@@ -36,7 +39,15 @@ export default () => {
     showSectionContact,
     showSectionAccount,
     showContactSuccessModal,
+    isMobile,
   } = useSelector((state) => state.ui);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth < 1250) dispatch(uiActions.setIsMobile());
+      else dispatch(uiActions.setIsNotMobile());
+    });
+  }, []);
 
   return (
     <div className="container">

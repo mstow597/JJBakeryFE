@@ -70,3 +70,14 @@
 .close:hover {
   cursor: pointer;
 }
+
+.menu {
+  width: 2.4rem;
+  height: 2.4rem;
+  stroke: #cf5d28;
+  z-index: 100000;
+}
+
+.menu:hover {
+  cursor: pointer;
+}

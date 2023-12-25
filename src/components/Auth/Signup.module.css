@@ -17,23 +17,13 @@
   font-size: 1.2rem;
 }
 
-.detail-modal {
-  position: absolute;
-  left: 125%;
-  top: 0;
-  background-color: #f5dfd4;
-  border: 2px solid #cf5d28;
-  min-width: 25rem;
-  min-height: 5rem;
-  border-radius: 0.8rem;
+.details {
   transition: all 0.3s ease-in-out;
   animation: slide-down 300ms ease-out forwards;
 }
 
 .detail-modal-container {
-  padding: 1.2rem 3.6rem 1.2rem 1.2rem;
   display: flex;
-  align-items: end;
   flex-direction: column;
   gap: 1.2rem;
 }

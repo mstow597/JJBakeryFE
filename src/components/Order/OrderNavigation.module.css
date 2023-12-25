@@ -149,7 +149,8 @@
 
 @media (width < 1250) {
   .order-nav {
-    top: 27dvh;
+    top: 8rem;
+    position: sticky;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding: 0;

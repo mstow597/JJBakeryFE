@@ -1,15 +1,5 @@
-import {
-  FailIcon,
-  MailIcon,
-  PasswordIcon,
-  SuccessIcon,
-} from "../UI/Icons/Icons";
-import {
-  CancelInput,
-  EmailInput,
-  PasswordInput,
-  SubmitInput,
-} from "./AuthFormInputs";
+import { CloseIcon, FailIcon, MailIcon, PasswordIcon, SuccessIcon } from "../UI/Icons/Icons";
+import { CancelInput, EmailInput, PasswordInput, SubmitInput } from "./AuthFormInputs";
 import { useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui";
 import { authActions } from "../../store/auth";
@@ -20,6 +10,7 @@ import Modal from "../UI/Modal/Modal";
 import Response from "./Response";
 import validator from "validator";
 import { checkoutActions } from "../../store/checkout";
+import { SERVER_URL } from "../../env";
 
 export default (props) => {
   const dispatch = useDispatch();
@@ -65,7 +56,7 @@ export default (props) => {
       requestData[key] = value;
     }
 
-    const response = await fetch("http://localhost:5000/api/v1/users/login", {
+    const response = await fetch(`${SERVER_URL}/api/v1/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -81,9 +72,7 @@ export default (props) => {
       console.log(err);
     }
 
-    const message = responseData
-      ? responseData.message
-      : "Server Error: Please try again later!";
+    const message = responseData ? responseData.message : "Server Error: Please try again later!";
 
     if (!response.ok) {
       setResponse(message);
@@ -98,7 +87,7 @@ export default (props) => {
             userName: name,
             userEmail: email,
             userPhone: phone,
-          }),
+          })
         );
         dispatch(checkoutActions.checkoutAsUser());
         dispatch(uiActions.closeLogin());
@@ -125,20 +114,14 @@ export default (props) => {
   return (
     <Modal onClose={closeLoginHandler}>
       <div className={stylesAuthForm["auth--form-container"]}>
+        <CloseIcon onClick={closeLoginHandler}></CloseIcon>
         {response && <Response>{response}</Response>}
         <h2 className={stylesAuthForm["auth--form-heading"]}>Sign In</h2>
-        <form
-          onSubmit={submitLoginHandler}
-          className={stylesAuthForm["auth--form"]}
-        >
+        <form onSubmit={submitLoginHandler} className={stylesAuthForm["auth--form"]}>
           <ul className={stylesAuthForm["auth--form-list"]}>
             <li className={stylesAuthForm["auth--form-input"]}>
-              {emailIsValid && emailValue.length !== 0 && !isTypingEmail && (
-                <SuccessIcon />
-              )}
-              {!emailIsValid && emailValue.length !== 0 && !isTypingEmail && (
-                <FailIcon />
-              )}
+              {emailIsValid && emailValue.length !== 0 && !isTypingEmail && <SuccessIcon />}
+              {!emailIsValid && emailValue.length !== 0 && !isTypingEmail && <FailIcon />}
               <MailIcon />
               <EmailInput value={emailValue} onChange={emailChangeHandler} />
             </li>
@@ -148,25 +131,16 @@ export default (props) => {
             </li>
           </ul>
           <div className={stylesAuthForm["auth--form-input"]}>
-            <SubmitInput
-              isSubmitting={isSubmitting}
-              allInputsValid={allInputsValid}
-            />
+            <SubmitInput isSubmitting={isSubmitting} allInputsValid={allInputsValid} />
           </div>
         </form>
         <CancelInput onClick={closeLoginHandler} />
         <div className={styles["login--footer"]}>
           <div className={styles["login--link-wrapper"]}>
-            <button
-              className={styles["btn--footer"]}
-              onClick={forgotPasswordHandler}
-            >
+            <button className={styles["btn--footer"]} onClick={forgotPasswordHandler}>
               Forgot Password?
             </button>
-            <button
-              className={styles["btn--footer"]}
-              onClick={emailVerificationHandler}
-            >
+            <button className={styles["btn--footer"]} onClick={emailVerificationHandler}>
               Email Verification?
             </button>
           </div>

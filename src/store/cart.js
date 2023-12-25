@@ -7,6 +7,7 @@ const cartSlice = createSlice({
   initialState: initialCartState,
   reducers: {
     setCart(state, action) {
+      console.log(action);
       state.cartId = action.payload.id;
       state.items = action.payload.items;
       state.totalCost = action.payload.items.reduce((accumulator, item) => {
@@ -15,15 +16,11 @@ const cartSlice = createSlice({
       }, 0);
     },
     addItem(state, action) {
-      state.totalCost +=
-        action.payload.orderAmount * action.payload.pricePerOrder;
+      state.totalCost += action.payload.orderAmount * action.payload.pricePerOrder;
 
-      const existingItemIndex = state.items.findIndex(
-        (item) => item.id === action.payload.id,
-      );
+      const existingItemIndex = state.items.findIndex((item) => item.id === action.payload.id);
       if (existingItemIndex !== -1) {
-        state.items[existingItemIndex].orderAmount +=
-          action.payload.orderAmount;
+        state.items[existingItemIndex].orderAmount += action.payload.orderAmount;
       } else {
         state.items = state.items.concat(action.payload);
       }
@@ -34,14 +31,17 @@ const cartSlice = createSlice({
       state.totalCost -= item.pricePerOrder;
     },
     removeItem(state, action) {
-      const { orderAmount, pricePerOrder } = state.items.find(
-        (item) => item.id === action.payload.id,
-      );
+      const { orderAmount, pricePerOrder } = state.items.find((item) => item.id === action.payload.id);
 
       if (state.items.length === 1) state.totalCost = 0;
       else state.totalCost -= orderAmount * pricePerOrder;
 
       state.items = state.items.filter((item) => item.id !== action.payload.id);
+    },
+    emptyCart(state) {
+      state.cartId = "";
+      state.items = [];
+      state.totalCost = 0;
     },
   },
 });

@@ -5,6 +5,7 @@ import { SERVER_URL } from "../../env";
 import { authActions } from "../../store/auth";
 import { orderActions } from "../../store/order";
 import { cartActions } from "../../store/cart";
+import ui, { uiActions } from "../../store/ui";
 
 export default () => {
   const dispatch = useDispatch();
@@ -13,23 +14,21 @@ export default () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const loadedImages = useSelector((state) => state.order.loadedImages);
   const productList = useSelector((state) => state.order.productList);
+  const isMobile = useSelector((state) => state.ui.isMobile);
 
   const [isMounted, setIsMounted] = useState(false);
 
   const checkLoggedIn = async () => {
-    const response = await fetch(
-      `${SERVER_URL}/api/v1/users/checkAndRefreshLogin`,
-      {
-        credentials: "include",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          token: document.cookie.split("=")[1],
-        }),
+    const response = await fetch(`${SERVER_URL}/api/v1/users/checkAndRefreshLogin`, {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify({
+        token: document.cookie.split("=")[1],
+      }),
+    });
     if (response.ok) {
       dispatch(authActions.login());
 
@@ -41,7 +40,7 @@ export default () => {
           userName: name,
           userEmail: email,
           userPhone: phone,
-        }),
+        })
       );
     }
   };
@@ -51,6 +50,11 @@ export default () => {
     const data = await results.json();
     const products = data.data.products;
     dispatch(orderActions.setProductList(products));
+  };
+
+  const setMobile = () => {
+    if (window.innerWidth < 1250) dispatch(uiActions.setIsMobile());
+    else dispatch(uiActions.setIsNotMobile());
   };
 
   const getPersistentCart = async () => {
@@ -89,20 +93,18 @@ export default () => {
             orderActions.addLoadedImage({
               imageSrc: item.imageSrc,
               imageURL: image,
-            }),
+            })
           );
         }
         return { ...item, image };
-      }),
+      })
     );
     return items;
   };
 
   const setCartItemsPersistentStorage = async (data) => {
     const matchingProducts = data.cart.products.map((product) => {
-      const matchingProduct = productList.find(
-        (item) => item._id === product._id,
-      );
+      const matchingProduct = productList.find((item) => item._id === product._id);
 
       if (!matchingProduct) return;
 
@@ -134,11 +136,11 @@ export default () => {
             orderActions.addLoadedImage({
               imageSrc: item.imageSrc,
               imageURL: image,
-            }),
+            })
           );
         }
         return { ...item, image };
-      }),
+      })
     );
     return items;
   };
@@ -149,6 +151,7 @@ export default () => {
 
   useEffect(() => {
     const initialSetup = async () => {
+      setMobile();
       await checkLoggedIn();
       await getProducts();
     };
@@ -160,8 +163,7 @@ export default () => {
       let items;
       let data;
       const localCartExists =
-        JSON.parse(localStorage.getItem("cart")) !== null &&
-        JSON.parse(localStorage.getItem("cart")).length !== 0;
+        JSON.parse(localStorage.getItem("cart")) !== null && JSON.parse(localStorage.getItem("cart")).length !== 0;
 
       // Logged in and local cart exists
       // Logged in and local cart does not exist
@@ -189,20 +191,17 @@ export default () => {
           const filteredCart = cart.items.map((item) => {
             return { _id: item.id, quantity: item.orderAmount };
           });
-          const response = await fetch(
-            `${SERVER_URL}/api/v1/orders/me/update`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              credentials: "include",
-              body: JSON.stringify({
-                token: document.cookie.split("=")[1],
-                products: filteredCart,
-              }),
+          const response = await fetch(`${SERVER_URL}/api/v1/orders/me/update`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
             },
-          );
+            credentials: "include",
+            body: JSON.stringify({
+              token: document.cookie.split("=")[1],
+              products: filteredCart,
+            }),
+          });
         }
       };
       updateCart();

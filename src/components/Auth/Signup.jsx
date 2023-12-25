@@ -3,14 +3,7 @@ import stylesAuthForm from "./AuthForm.module.css";
 import styles from "./Signup.module.css";
 import validator from "validator";
 import { SERVER_URL } from "../../env";
-import {
-  FailIcon,
-  MailIcon,
-  PasswordIcon,
-  PersonIcon,
-  PhoneIcon,
-  SuccessIcon,
-} from "../UI/Icons/Icons";
+import { CloseIcon, FailIcon, MailIcon, PasswordIcon, PersonIcon, PhoneIcon, SuccessIcon } from "../UI/Icons/Icons";
 import {
   CancelInput,
   EmailConfirmInput,
@@ -26,10 +19,11 @@ import { uiActions } from "../../store/ui";
 import { useEffect, useState } from "react";
 import Response from "./Response";
 
-const PasswordDetailModal = (props) => {
+const PasswordDetails = (props) => {
   const { passwordValue } = props;
+  console.log("Displaying password detail modal");
   return (
-    <div className={styles["detail-modal"]}>
+    <div className={styles["details"]}>
       <div className={styles["detail-modal-container"]}>
         <div className={styles["detail-modal-row"]}>
           <p>At least 8 characters in length</p>
@@ -53,12 +47,8 @@ const PasswordDetailModal = (props) => {
         </div>
         <div className={styles["detail-modal-row"]}>
           <p>At least 1 symbol (!,#,@, etc.)</p>
-          {!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(passwordValue) && (
-            <FailIcon />
-          )}
-          {/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(passwordValue) && (
-            <SuccessIcon />
-          )}
+          {!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(passwordValue) && <FailIcon />}
+          {/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(passwordValue) && <SuccessIcon />}
         </div>
       </div>
     </div>
@@ -88,9 +78,7 @@ export default (props) => {
   const [passwordIsFocused, setPasswordIsFocused] = useState(false);
 
   const nameIsValid = validator.isAscii(nameValue);
-  const phoneIsValid = phoneValue.match(
-    /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?$/,
-  );
+  const phoneIsValid = phoneValue.match(/^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?$/);
   const emailIsValid = validator.isEmail(emailValue);
   const emailConfirmIsValid = emailValue === emailConfirmValue;
   const passwordIsValid = validator.isStrongPassword(passwordValue);
@@ -255,9 +243,7 @@ export default (props) => {
       console.log(err);
     }
 
-    const message = responseData
-      ? responseData.message
-      : "Server Error: Please try again later!";
+    const message = responseData ? responseData.message : "Server Error: Please try again later!";
 
     if (!response.ok) {
       setResponse(message);
@@ -272,75 +258,39 @@ export default (props) => {
     <div>
       <Modal onClose={closeSignupHandler}>
         <div className={stylesAuthForm["auth--form-container"]}>
+          <CloseIcon onClick={closeSignupHandler}></CloseIcon>
           {response && <Response>{response}</Response>}
           <h2 className={stylesAuthForm["auth--form-heading"]}>Sign up</h2>
-          <form
-            className={stylesAuthForm["auth--form"]}
-            onSubmit={submitSignupHandler}
-          >
+          <form className={stylesAuthForm["auth--form"]} onSubmit={submitSignupHandler}>
             <ul className={stylesAuthForm["auth--form-list"]}>
               <li className={stylesAuthForm["auth--form-input"]}>
-                {!nameIsValid && nameValue.length !== 0 && !isTypingName && (
-                  <FailIcon />
-                )}
-                {nameIsValid && nameValue.length !== 0 && !isTypingName && (
-                  <SuccessIcon />
-                )}
+                {!nameIsValid && nameValue.length !== 0 && !isTypingName && <FailIcon />}
+                {nameIsValid && nameValue.length !== 0 && !isTypingName && <SuccessIcon />}
                 <PersonIcon />
-                <NameInput
-                  value={nameValue}
-                  onChange={nameChangeHandler}
-                ></NameInput>
+                <NameInput value={nameValue} onChange={nameChangeHandler}></NameInput>
               </li>
               <li className={stylesAuthForm["auth--form-input"]}>
-                {!phoneIsValid && phoneValue.length !== 0 && !isTypingPhone && (
-                  <FailIcon />
-                )}
-                {phoneIsValid && phoneValue.length !== 0 && !isTypingPhone && (
-                  <SuccessIcon />
-                )}
+                {!phoneIsValid && phoneValue.length !== 0 && !isTypingPhone && <FailIcon />}
+                {phoneIsValid && phoneValue.length !== 0 && !isTypingPhone && <SuccessIcon />}
                 <PhoneIcon />
-                <PhoneInput
-                  value={phoneValue}
-                  onChange={phoneChangeHandler}
-                ></PhoneInput>
+                <PhoneInput value={phoneValue} onChange={phoneChangeHandler}></PhoneInput>
               </li>
               <li className={stylesAuthForm["auth--form-input"]}>
-                {!emailIsValid && emailValue.length !== 0 && !isTypingEmail && (
-                  <FailIcon />
-                )}
-                {emailIsValid && emailValue.length !== 0 && !isTypingEmail && (
-                  <SuccessIcon />
-                )}
+                {!emailIsValid && emailValue.length !== 0 && !isTypingEmail && <FailIcon />}
+                {emailIsValid && emailValue.length !== 0 && !isTypingEmail && <SuccessIcon />}
                 <MailIcon />
-                <EmailInput
-                  value={emailValue}
-                  onChange={emailChangeHandler}
-                ></EmailInput>
+                <EmailInput value={emailValue} onChange={emailChangeHandler}></EmailInput>
               </li>
               <li className={stylesAuthForm["auth--form-input"]}>
-                {!emailConfirmIsValid &&
-                  emailConfirmValue.length !== 0 &&
-                  !isTypingEmailConfirm && <FailIcon />}
-                {emailConfirmIsValid &&
-                  emailConfirmValue.length !== 0 &&
-                  !isTypingEmailConfirm && <SuccessIcon />}
+                {!emailConfirmIsValid && emailConfirmValue.length !== 0 && !isTypingEmailConfirm && <FailIcon />}
+                {emailConfirmIsValid && emailConfirmValue.length !== 0 && !isTypingEmailConfirm && <SuccessIcon />}
                 <MailIcon />
-                <EmailConfirmInput
-                  value={emailConfirmValue}
-                  onChange={emailConfirmChangeHandler}
-                ></EmailConfirmInput>
+                <EmailConfirmInput value={emailConfirmValue} onChange={emailConfirmChangeHandler}></EmailConfirmInput>
               </li>
+              {passwordIsFocused && <PasswordDetails passwordValue={passwordValue} />}
               <li className={stylesAuthForm["auth--form-input"]}>
-                {passwordIsFocused && (
-                  <PasswordDetailModal passwordValue={passwordValue} />
-                )}
-                {!passwordIsValid &&
-                  passwordValue.length !== 0 &&
-                  !isTypingPassword && <FailIcon />}
-                {passwordIsValid &&
-                  passwordValue.length !== 0 &&
-                  !isTypingPassword && <SuccessIcon />}
+                {!passwordIsValid && passwordValue.length !== 0 && !isTypingPassword && <FailIcon />}
+                {passwordIsValid && passwordValue.length !== 0 && !isTypingPassword && <SuccessIcon />}
                 <PasswordIcon />
                 <PasswordInput
                   value={passwordValue}
@@ -350,12 +300,12 @@ export default (props) => {
                 ></PasswordInput>
               </li>
               <li className={stylesAuthForm["auth--form-input"]}>
-                {!passwordConfirmIsValid &&
-                  passwordConfirmValue.length !== 0 &&
-                  !isTypingPasswordConfirm && <FailIcon />}
-                {passwordConfirmIsValid &&
-                  passwordConfirmValue.length !== 0 &&
-                  !isTypingPasswordConfirm && <SuccessIcon />}
+                {!passwordConfirmIsValid && passwordConfirmValue.length !== 0 && !isTypingPasswordConfirm && (
+                  <FailIcon />
+                )}
+                {passwordConfirmIsValid && passwordConfirmValue.length !== 0 && !isTypingPasswordConfirm && (
+                  <SuccessIcon />
+                )}
                 <PasswordIcon />
                 <PasswordConfirmInput
                   value={passwordConfirmValue}
@@ -363,10 +313,7 @@ export default (props) => {
                 ></PasswordConfirmInput>
               </li>
               <li className={stylesAuthForm["auth--form-input"]}>
-                <SubmitInput
-                  isSubmitting={isSubmitting}
-                  allInputsValid={canSubmit}
-                ></SubmitInput>
+                <SubmitInput isSubmitting={isSubmitting} allInputsValid={canSubmit}></SubmitInput>
               </li>
             </ul>
           </form>

@@ -61,7 +61,7 @@
 
 @media (width < 1250) {
   .hero {
-    height: calc(100dvh - 28dvh);
+    height: calc(100dvh - 8dvh);
   }
   .hero-text {
     padding: 0 1rem;
@@ -79,7 +79,7 @@
 
 @media (width < 500) {
   .hero {
-    height: calc(100dvh - 28dvh);
+    height: calc(100dvh - 8dvh);
   }
   .hero-text {
     padding: 0 1rem;

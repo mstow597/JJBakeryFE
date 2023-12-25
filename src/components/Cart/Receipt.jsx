@@ -6,16 +6,14 @@ import Button from "../UI/Button/Button";
 
 export default () => {
   const dispatch = useDispatch();
-  const { orderId, products, subtotal, taxes, purchasePrice, orderPaid } =
-    useSelector((state) => state.receipt);
+  const { orderId, products, subtotal, taxes, purchasePrice, orderPaid } = useSelector((state) => state.receipt);
   const loadedImages = useSelector((state) => state.order.loadedImages);
   const productList = useSelector((state) => state.order.productList);
 
   const items = products.map((product) => {
-    const matchingProduct = productList.find(
-      (prod) => prod._id === product._id,
-    );
+    const matchingProduct = productList.find((prod) => prod._id === product._id);
     const image = loadedImages[matchingProduct.imageSrc];
+    console.log(image);
     return {
       name: matchingProduct.name,
       orderAmount: product.quantity,
@@ -23,8 +21,6 @@ export default () => {
       image: image,
     };
   });
-
-  console.log(items);
 
   const closeReceiptHandler = () => {
     dispatch(uiActions.closeReceipt());
@@ -34,10 +30,7 @@ export default () => {
     <Modal onClose={closeReceiptHandler} classes="modal-receipt">
       <div className={styles.checkout}>
         <h2 className={styles["checkout-heading"]}>Receipt</h2>
-        <p>
-          Thank you for trusting us with your bakery needs! We are processing
-          your order.{" "}
-        </p>
+        <p>Thank you for trusting us with your bakery needs! We are processing your order. </p>
         <p>
           Your order confirmation:
           <strong> {orderId}</strong>
@@ -52,14 +45,10 @@ export default () => {
                 </span>
                 <span>
                   {`${item.name[0].toUpperCase()}${item.name.slice(1)}`}{" "}
-                  <span className={styles["cart-item-price"]}>
-                    (${item.pricePerOrder}/ea)
-                  </span>
+                  <span className={styles["cart-item-price"]}>(${item.pricePerOrder}/ea)</span>
                 </span>
                 <span className={styles["cart-item-subtotal"]}>
-                  <strong>
-                    ${(item.orderAmount * item.pricePerOrder).toFixed(2)}
-                  </strong>
+                  <strong>${(item.orderAmount * item.pricePerOrder).toFixed(2)}</strong>
                 </span>
               </li>
             );

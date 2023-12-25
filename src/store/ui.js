@@ -17,6 +17,7 @@ const initialUIState = {
   showSectionContact: false,
   showContactSuccessModal: false,
   showSectionAccount: false,
+  isMobile: false,
   orderedItem: {},
   orderAmount: 0,
 };
@@ -139,6 +140,12 @@ const uiSlice = createSlice({
     showAccount(state) {
       setAllFalse(state);
       state.showSectionAccount = true;
+    },
+    setIsMobile(state) {
+      state.isMobile = true;
+    },
+    setIsNotMobile(state) {
+      state.isMobile = false;
     },
   },
 });
